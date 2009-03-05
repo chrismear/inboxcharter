@@ -1,0 +1,27 @@
+inboxcharter is a hacky little Ruby script that checks IMAP mailboxes for their total number of messages and number of unread messages, logs this to a csv file, and produces a Google Chart API URL for the resulting data.
+
+Requires the gchartrb gem.
+
+Copy config.example.yml to config.yml and amend to suit your mail server(s).
+
+Then, run inbox_status.rb. It will do its stuff, and then spit out a Google Chart API URL.
+
+I have this set up in an hourly-run cron job like this:
+
+cd /var/www/feedmechocolate.com/htdocs/inboxcharter
+./inbox_status.rb > charturl.txt
+
+I then include the URL in my web page using an Apache server-side include:
+
+<img src="<!--#include virtual="/inboxcharter/charturl.txt" -->" alt="" />
+
+I've only tested it with an IMAP server that accepts LOGIN authentication, and IMAP servers that take PLAIN authentication over SSL. There is no error checking. There is also no automatic removal of old data.
+
+Also, if you're using a setup like this, make sure your web server can't read the config.yml file, or something similar, otherwise everyone will be able to read your passwords.
+
+Like I said, it's hacky.
+
+You can see it in action here: http://www.feedmechocolate.com/
+
+Chris Mear <chris@feedmechocolate.com>
+March 2009

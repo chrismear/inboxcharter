@@ -1,0 +1,13 @@
+--- 
+- :server: imap.example.com
+  :username: chris
+  :password: supersecret
+  :authentication: LOGIN
+- :server: imap.gmail.com
+  :username: chrismear
+  :password: supersecret
+  :ssl: true
+- :server: mail.mac.com
+  :username: chrismear
+  :password: supersecret
+  :ssl: true
