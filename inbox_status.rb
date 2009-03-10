@@ -59,6 +59,10 @@ CSV.open('inboxdata.csv', 'r') do |row|
   unread.push row[3].to_i
 end
 
+[dates, messages, unread].each do |array|
+  array = array[-48..-1] if array.length > 48
+end
+
 c = GoogleChart::LineChart.new('500x200')
 c.data "Messages", messages, '000000'
 c.data "Unread", unread, 'ff0000'
