@@ -5,6 +5,7 @@ require 'csv'
 require 'google_chart'
 require 'net/imap'
 require 'yaml'
+require 'cgi'
 
 def get_status(options={})
   server = options[:server]
@@ -84,4 +85,4 @@ spaced_dates.push(end_date)
 
 c.axis :x, :labels => spaced_dates
 c.axis :y, :range => [0, [messages.max, unread.max].max]
-puts c.to_escaped_url
+puts CGI::escapeHTML(c.to_escaped_url)
